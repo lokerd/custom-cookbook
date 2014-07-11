@@ -49,7 +49,7 @@ user node['errbit']['user'] do
 end
 
 # packages
-%w(libxml2-dev libxslt1-dev).each do |pkg|
+%w(libxml2-dev libxslt1-dev ruby-shadow).each do |pkg|
     package pkg do
         action ( :install )
     end
