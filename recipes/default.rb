@@ -114,6 +114,13 @@ deploy_revision node['errbit']['deploy_to'] do
       to "#{node['errbit']['deploy_to']}/shared/vendor_bundle"
     end
     common_groups = %w{development test cucumber staging production}
+
+
+    execute "bundle exec gem install rake" do
+      ignore_failure true
+      cwd release_path
+    end
+
     execute "bundle install --deployment --without #{(common_groups - ([node['errbit']['environment']])).join(' ')}" do
       ignore_failure true
       cwd release_path
